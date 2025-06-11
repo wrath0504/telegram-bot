@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Очиститель инжектора",
+    "description": "Эффективно удаляет отложения из топливной системы.",
+    "price": 450,
+    "photo_url": "https://avatars.mds.yandex.net/get-mpic/5232049/2a000001949b3c4c4873c6cc87632c2f4e81/optimize"
+  },
+  {
+    "id": 2,
+    "name": "Полироль для пластика",
+    "description": "Возвращает блеск и защищает от UV.",
+    "price": 320,
+    "photo_url": "https://avatars.mds.yandex.net/get-mpic/4902598/img_id2292563387120371536.jpeg/optimize"
+  }
+]
