@@ -8,6 +8,12 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from config import TOKEN, ADMIN_ID
+from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
+from aiohttp import web
+
+WEBHOOK_PATH = f"/webhook/{TOKEN}"
+WEBHOOK_URL = f"https://{your_render_app_url}{WEBHOOK_PATH}"
+
 
 # Настройка логирования
 logging.basicConfig(level=logging.INFO)
@@ -239,7 +245,14 @@ async def payment_chosen(callback: types.CallbackQuery, state: FSMContext):
 
 # Запуск бота
 async def main():
-    await dp.start_polling(bot)
+    # Установка Webhook
+    await bot.set_webhook(WEBHOOK_URL)
 
-if __name__ == "__main__":
-    asyncio.run(main())
+    app = web.Application()
+    SimpleRequestHandler(dispatcher=dp, bot=bot).register(app, path=WEBHOOK_PATH)
+    setup_application(app, dp, bot=bot)
+    return app
+
+if name == "__main__":
+    import uvicorn
+    web.run_app(main(), host="0.0.0.0", port=10000)
