@@ -4,7 +4,6 @@ import json
 from aiogram import Bot, Dispatcher, F, types
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
 from aiogram.enums import ParseMode
-from aiogram.client.default import DefaultBotProperties
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from config import TOKEN, ADMIN_ID
@@ -19,7 +18,7 @@ WEBHOOK_URL = f"https://{your_render_app_url}{WEBHOOK_PATH}"
 logging.basicConfig(level=logging.INFO)
 
 # Инициализация бота и диспетчера
-bot = Bot(token=TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
+bot = Bot(token=TOKEN, parse_mode=ParseMode.HTML)
 dp = Dispatcher()
 
 # Хранилище корзин пользователей
