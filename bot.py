@@ -10,8 +10,9 @@ from config import TOKEN, ADMIN_ID
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
 from aiohttp import web
 
+RENDER_DOMAIN = "telegram-bot-jfww.onrender.com"
 WEBHOOK_PATH = f"/webhook/{TOKEN}"
-WEBHOOK_URL = f"https://{your_render_app_url}{WEBHOOK_PATH}"
+WEBHOOK_URL = f"https://{RENDER_DOMAIN}{WEBHOOK_PATH}"
 
 
 # Настройка логирования
