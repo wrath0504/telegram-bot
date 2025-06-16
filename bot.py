@@ -253,6 +253,6 @@ async def main():
     setup_application(app, dp, bot=bot)
     return app
 
-if name == "__main__":
+if __name__ == "__main__":
     import uvicorn
     web.run_app(main(), host="0.0.0.0", port=10000)
