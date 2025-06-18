@@ -59,9 +59,11 @@ async def start(message: Message):
             text="📦 Каталог",
             web_app=WebAppInfo(url="https://telegram-webapp-sand.vercel.app/")
         )],
-        [InlineKeyboardButton(text="📞 Контакты", callback_data="contacts")]
+        [InlineKeyboardButton(text="👨‍💼 Менеджер", callback_data="@kuZo_18")],
+        [InlineKeyboardButton(text="📢 Канал", url="t.me/zdclubshop")] 
     ])
     await message.answer("Добро пожаловать! Выберите:", reply_markup=kb)
+
 
 # Команда /contacts
 @dp.message(F.text == "/contacts")
