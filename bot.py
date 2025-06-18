@@ -36,10 +36,10 @@ async def start(message: Message):
 async def show_manager(callback: types.CallbackQuery):
     text = (
         "📞 <b>Контакты менеджеров:</b>\n\n"
-        "👤 Ирина\n"
-        "Telegram: @manager_irina\n\n"
-        "👤 Артём\n"
-        "Telegram: @manager_artem"
+        "😉 Эмиль\n"
+        "Telegram: @kuZo_18\n\n"
+        "😎 Ильназ\n"
+        "Telegram: @zery01"
     )
     await callback.message.answer(text)
     await callback.answer()
