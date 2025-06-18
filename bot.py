@@ -244,15 +244,32 @@ async def payment_chosen(callback: types.CallbackQuery, state: FSMContext):
     await state.clear()
 
 # Запуск бота
+# Добавим ping-роут
+async def handle_ping(request):
+    return web.Response(text="pong")
+
+
+# Основная функция запуска
 async def main():
     # Установка Webhook
     await bot.set_webhook(WEBHOOK_URL)
 
+    # Создаём aiohttp-приложение
     app = web.Application()
+
+    # Регистрируем маршрут /ping
+    app.router.add_get("/ping", handle_ping)
+
+    # Регистрируем aiogram webhook-хендлер
     SimpleRequestHandler(dispatcher=dp, bot=bot).register(app, path=WEBHOOK_PATH)
+
+    # Настройка Dispatcher внутри aiohttp-приложения
     setup_application(app, dp, bot=bot)
+
     return app
 
+
+# Запуск приложения на Render
 if __name__ == "__main__":
-    import uvicorn
     web.run_app(main(), host="0.0.0.0", port=10000)
+
