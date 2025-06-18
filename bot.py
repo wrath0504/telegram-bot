@@ -31,6 +31,16 @@ async def start(message: Message):
     ])
     await message.answer("Добро пожаловать! Выберите:", reply_markup=kb)
 
+# Логи с полной информацией
+async def send_log_to_admin(text: str, user: types.User = None):
+    user_info = ""
+    if user:
+        username = f"@{user.username}" if user.username else "(нет username)"
+        full_name = f"{user.full_name}"
+        user_info = f"👤 <b>{full_name}</b> {username}\n"
+    await bot.send_message(ADMIN_ID, f"📋 <b>Лог действия:</b>\n{user_info}{text}")
+
+
 # Обработка кнопки "Менеджер"
 @dp.callback_query(F.data == "manager")
 async def show_manager(callback: types.CallbackQuery):
@@ -43,7 +53,9 @@ async def show_manager(callback: types.CallbackQuery):
     )
     await callback.message.answer(text)
     await callback.answer()
-    await bot.send_message(ADMIN_ID, f"👤 {callback.from_user.full_name} открыл контакты менеджеров.")
+    await send_log_to_admin("запросил контакты", user=callback.message.from_user)
+
+
 
 # Обработка пинга
 async def handle_ping(request):
