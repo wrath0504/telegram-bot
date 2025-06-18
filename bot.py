@@ -53,9 +53,7 @@ async def show_manager(callback: types.CallbackQuery):
     )
     await callback.message.answer(text)
     await callback.answer()
-    await send_log_to_admin("запросил контакты", user=callback.message.from_user)
-
-
+    await send_log_to_admin("запросил контакты", user=callback.from_user)
 
 # Обработка пинга
 async def handle_ping(request):
