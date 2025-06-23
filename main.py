@@ -1,4 +1,5 @@
 import asyncio
+import os
 from aiohttp import web
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
 from config import WEBHOOK_URL, WEBHOOK_PATH
@@ -20,4 +21,5 @@ async def main():
     return app
 
 if __name__ == "__main__":
-    web.run_app(main(), host="0.0.0.0", port=10000)
+    PORT = int(os.environ.get("PORT", 10000))  # Render подставляет порт сам
+    web.run_app(main(), host="0.0.0.0", port=PORT)
